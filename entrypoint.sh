@@ -9,6 +9,7 @@ export ARM_TENANT_ID=$INPUT_ARM_TENANT_ID
 export ARM_ACCESS_KEY=$INPUT_ARM_ACCESS_KEY
 export VARIABLES=$INPUT_VARIABLES
 export INPUT_PATH=$INPUT_PATH
+export VARFILE=$INPUT_VARFILE
 
 cd /github/workspace/$INPUT_PATH
 
@@ -21,5 +22,8 @@ for var in $VARIABLES; do
   var_args="$var_args -var $var"
 done
 
-echo "terraform apply -no-color -input=false -auto-approve $var_args"
-terraform apply -no-color -input=false -auto-approve $var_args
+var_file="-var-file=$VARFILE"
+
+
+echo "terraform apply -no-color -input=false -auto-approve $var_file $var_args"
+terraform apply -no-color -input=false -auto-approve $var_file $var_args

@@ -30,6 +30,9 @@ inputs:
   path:
     description: Path to Terraform directory, defaults to the working directory
     default: .
+  varfile:
+    description: Name of tfvars file within path
+    default: "variables.tfvars"
 runs:
   using: docker
   image: Dockerfile

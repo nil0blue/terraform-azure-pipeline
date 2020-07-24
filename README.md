@@ -22,6 +22,7 @@ terraform {
 | `arm_access_key` | `string` | | Azure Storage access key |
 | `variables` | `string` | `""` | Comma-separated string of Terraform variables |
 | `path` | `string` | `.` | Path to Terraform directory, defaults to the working directory |
+| `varfile` | `string` | `.` | Name of tfvars file, defaults to variables.tfvars |
 
 ## Usage
 
@@ -30,7 +31,7 @@ jobs:
   provisioning:
     runs-on: ubuntu-latest
     steps:
-    - uses: ams0/terraform-apply-for-azure-action@v1
+    - uses: nil0blue/terraform-azure-pipeline@v1
       with:
         arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
         arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -38,6 +39,7 @@ jobs:
         arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
         variables: var=${{ rg_name=aks }}
         path: terraform/dev
+        varfile: variables.tfvars
 ```
 
 ## License
